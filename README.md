@@ -457,17 +457,29 @@ While standard and advanced cross-validation techniques work well for many datas
 
 Data often follows specific patterns or dependencies that traditional CV methods fail to account for. In such cases, specialized cross-validation techniques are required to ensure proper model evaluation. These methods include Time Series Split, Group K-Fold, and Blocked Cross-Validation, each designed to address distinct challenges in structured datasets.
 
-3.1. Time Series Cross-Validation
-Definition: Time Series Cross-Validation is designed specifically for sequential data, where future values depend on past values. Unlike traditional K-Fold CV, which randomly splits data, this method ensures that the training set only contains past data points relative to the test set.
+### 3.1. Time Series Cross-Validation
+
+**Definition**
+
+Time Series Cross-Validation is designed specifically for sequential data, where future values depend on past values. Unlike traditional K-Fold CV, which randomly splits data, this method ensures that the training set only contains past data points relative to the test set.
 Purpose: The goal is to evaluate models under real-world conditions by mimicking how they would be used in production, where future data is not yet available.
-Advantages:
+
+**Advantages**
+
 Prevents data leakage by ensuring test data comes after training data.
 Reflects real-world forecasting conditions.
-Disadvantages:
+
+**Disadvantages**
+
 Requires careful handling to maintain a balance between training and test data sizes.
 Can result in high variance if data is not sufficiently large.
-Example Use Case: Predicting stock market trends, where a model is trained on past prices and tested on future ones.
-3.2. Group K-Fold Cross-Validation
+
+**Example Use Case** 
+
+Predicting stock market trends, where a model is trained on past prices and tested on future ones.
+
+### 3.2. Group K-Fold Cross-Validation
+
 Definition: In datasets where samples are grouped (e.g., patients in a medical study or users in a recommendation system), Group K-Fold Cross-Validation ensures that all data points from the same group appear in either the training or the test set, but not both.
 Purpose: This prevents data leakage caused by information from the same entity appearing in both sets.
 Advantages:
@@ -477,7 +489,9 @@ Disadvantages:
 Requires careful preprocessing to define meaningful groups.
 May result in imbalanced splits if groups have varying sizes.
 Example Use Case: Evaluating a medical model where all records from the same patient should be in a single fold, ensuring that predictions are not biased by repeated patient data.
-3.3. Blocked Cross-Validation
+
+### 3.3. Blocked Cross-Validation
+
 Definition: Blocked CV is used when data is collected in segments or batches, ensuring that entire blocks of data remain together during validation. This is particularly useful for spatial data, time series, or experiments where data is grouped by conditions.
 Purpose: The objective is to avoid mixing related data points that share temporal, spatial, or experimental dependencies.
 Advantages:
