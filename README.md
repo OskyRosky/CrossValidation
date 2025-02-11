@@ -265,6 +265,85 @@ We will start by exploring the Basic Cross-Validation Methods, which are the mos
 
 ## 1. Basic CV methods.
 
+### 1.1 Hold-Out Validation
+
+**Definition**
+
+Hold-Out Validation is the simplest form of cross-validation, where the dataset is randomly split into two sets:
+
+A training set (e.g., 80%) used to train the model.
+A test set (e.g., 20%) used to evaluate the model's performance.
+This method is a single-shot validation, meaning the model is trained once on a subset of the data and evaluated only once.
+
+**Purpose**
+
+The primary goal of Hold-Out Validation is to provide a quick estimation of the model’s performance by testing it on unseen data. It is widely used when the dataset is large and the computational cost of multiple training iterations is prohibitive.
+
+**Advantages**
+
+- Fast and easy to implement – requires minimal computation.
+- Useful for large datasets – since it evaluates on a single test set, it avoids unnecessary repeated computations.
+
+**Disadvantages**
+
+- High variance – performance metrics can vary significantly depending on how the data is split.
+- Waste of data – only a portion of the dataset is used for training, potentially leading to suboptimal model learning.
+
+**Example Use Case**
+
+A company developing a spam detection model might use Hold-Out Validation to quickly evaluate a model trained on 80% of their email dataset while testing on the remaining 20%. If the dataset is massive (millions of emails), this method offers a good balance between efficiency and performance estimation.
+
+###  1.2 K-Fold Cross-Validation
+
+**Definition**
+
+K-Fold Cross-Validation improves upon Hold-Out Validation by dividing the dataset into K equally sized folds. The model is trained K times, each time using K-1 folds for training and 1 fold for validation. The final performance metric is obtained by averaging the results across all K iterations.
+
+**Purpose**
+
+This method aims to reduce variance and use more data for training, leading to a more reliable performance estimate.
+
+**Advantages**
+
+More stable and generalizable – results are less dependent on a particular data split.
+Better use of data – each sample is used for both training and testing at least once.
+
+**Disadvantages**
+
+Computationally expensive – requires training the model K times.
+Not ideal for very large datasets – can be time-consuming when using complex models.
+
+**Example Use Case**
+
+A medical diagnostics model predicting whether a patient has a disease can benefit from 5-Fold Cross-Validation to ensure the model does not rely too much on specific training-test splits. Given the limited number of patient records, maximizing the use of all data points is essential.
+
+###  1.3 Stratified K-Fold Cross-Validation
+
+**Definition**
+
+Stratified K-Fold Cross-Validation is a variation of K-Fold where each fold maintains the same class distribution as the original dataset. This is particularly useful for classification tasks with imbalanced datasets (e.g., fraud detection, rare disease prediction).
+
+**Purpose**
+
+Ensures that the model is trained and tested on representative distributions of the target classes, preventing misleading performance estimates.
+
+**Advantages**
+
+Preserves class distribution – crucial for imbalanced classification problems.
+
+More reliable than standard K-Fold – reduces the risk of having training or validation sets dominated by a single class.
+
+**Disadvantages**
+
+Increases complexity – requires additional processing to stratify data.
+Computational overhead – similar to K-Fold, it requires multiple model trainings.
+
+**Example Use Case**
+
+A credit card fraud detection model needs to be evaluated using Stratified K-Fold Cross-Validation because fraudulent transactions are rare compared to non-fraudulent ones. Without stratification, some folds may contain only non-fraudulent transactions, leading to misleading results.
+
+These three methods form the backbone of cross-validation techniques and are widely used depending on the dataset size and problem at hand
+
 ## 2. Advanced CV techniques.
 
 ## 3. Specialized CV for specific data structures.
