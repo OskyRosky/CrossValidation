@@ -480,31 +480,55 @@ Predicting stock market trends, where a model is trained on past prices and test
 
 ### 3.2. Group K-Fold Cross-Validation
 
-Definition: In datasets where samples are grouped (e.g., patients in a medical study or users in a recommendation system), Group K-Fold Cross-Validation ensures that all data points from the same group appear in either the training or the test set, but not both.
-Purpose: This prevents data leakage caused by information from the same entity appearing in both sets.
-Advantages:
+**Definition** 
+
+In datasets where samples are grouped (e.g., patients in a medical study or users in a recommendation system), Group K-Fold Cross-Validation ensures that all data points from the same group appear in either the training or the test set, but not both.
+**Purpose**
+
+This prevents data leakage caused by information from the same entity appearing in both sets.
+
+**Advantages**
+
 Ensures independence between training and test sets.
 More realistic evaluation in grouped datasets.
-Disadvantages:
+
+**Disadvantages**
+
 Requires careful preprocessing to define meaningful groups.
 May result in imbalanced splits if groups have varying sizes.
-Example Use Case: Evaluating a medical model where all records from the same patient should be in a single fold, ensuring that predictions are not biased by repeated patient data.
+
+**Example Use Case** Evaluating a medical model where all records from the same patient should be in a single fold, ensuring that predictions are not biased by repeated patient data.
 
 ### 3.3. Blocked Cross-Validation
 
-Definition: Blocked CV is used when data is collected in segments or batches, ensuring that entire blocks of data remain together during validation. This is particularly useful for spatial data, time series, or experiments where data is grouped by conditions.
-Purpose: The objective is to avoid mixing related data points that share temporal, spatial, or experimental dependencies.
-Advantages:
+**Definition** 
+
+Blocked CV is used when data is collected in segments or batches, ensuring that entire blocks of data remain together during validation. This is particularly useful for spatial data, time series, or experiments where data is grouped by conditions.
+
+**Purpose** 
+
+The objective is to avoid mixing related data points that share temporal, spatial, or experimental dependencies.
+
+**Advantages**
+
 Prevents data leakage in structured datasets.
 Ensures that training and validation sets reflect the real-world setting.
-Disadvantages:
+
+**Disadvantages**
+
 Can lead to reduced training data per fold if blocks are too large.
 Requires domain knowledge to define proper blocking strategies.
-Example Use Case: Climate modeling, where data from entire regions is used for training while another region is used for testing to ensure spatial independence.
-Conclusion of Specialized CV
+
+**Example Use Case** 
+
+Climate modeling, where data from entire regions is used for training while another region is used for testing to ensure spatial independence.
+
+**Conclusion of Specialized CV**
+
 Specialized cross-validation techniques are essential for handling structured data where traditional methods fail. Whether dealing with sequential dependencies in time series, grouped observations in clinical trials, or spatial patterns in geographic data, choosing the right CV approach ensures that models are evaluated under realistic conditions. By applying the appropriate method, data scientists can build robust models that generalize well to new data without introducing bias or overfitting.
 
 ## 4. Computationally efficient CV.
+
 
 
 # IV. Code implementation.
