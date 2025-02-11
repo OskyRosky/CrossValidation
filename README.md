@@ -31,7 +31,7 @@
 
  ![ut](/ima/ima2.webp)
 
-# I. 
+# I. Introduction
 
 ## 1. What's Time Series
 
