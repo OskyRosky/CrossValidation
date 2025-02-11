@@ -31,14 +31,16 @@
 
  ![ut](/ima/ima2.webp)
 
-# I. Introduction
+# I. Cross Validation.
 
 ## 1. What's Time Series
 
 ### Definition
 
-# II. 
+# II. CV in depth.
 
-# III. 
+# III. Types of Cross Validation
 
-# IV. 
+# IV. Code implementation.
+
+# V. Real world applications.
