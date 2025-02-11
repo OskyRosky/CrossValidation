@@ -602,6 +602,69 @@ Evaluating machine learning models where dataset size is large, but removing a s
 
 Efficient cross-validation methods are essential for scaling machine learning workflows to large datasets and complex models. Techniques such as Monte Carlo CV, Repeated K-Fold CV, and Approximate LPO CV enable practitioners to balance accuracy with computational feasibility. By strategically selecting the right method, data scientists can optimize model evaluation without excessive computational costs, making CV practical even in high-performance computing environments.
 
+## Summary of Cross-Validation Methods
+
+**1. Basic CV Methods**
+
+- Hold-Out Validation
+
+✅ Simple, fast
+❌ High variance, depends on a single split
+K-Fold Cross-Validation
+
+✅ More stable than Hold-Out
+❌ Computationally expensive
+Stratified K-Fold CV
+
+✅ Maintains class distribution
+❌ Similar computational cost as K-Fold
+
+**2. Advanced CV Methods**
+
+- Leave-One-Out CV (LOO-CV)
+
+✅ Uses all data for training
+❌ Extremely slow for large datasets
+
+- Leave-P-Out CV (LPO-CV)
+
+✅ More general than LOO
+❌ Computationally impractical for large datasets
+
+- Repeated K-Fold CV
+
+✅ Reduces variance of standard K-Fold
+❌ Requires more training iterations
+
+**3. Specialized CV for Specific Data Structures**
+
+- Time Series Split (Rolling CV)
+
+✅ Respects time dependency
+❌ Not suitable for static datasets
+
+- Blocked CV
+
+✅ Useful for structured data with groups
+❌ Less effective for non-grouped datasets
+
+- Nested CV
+
+✅ Best for hyperparameter tuning
+❌ Very computationally expensive
+
+**4. Computationally Efficient CV**
+
+Monte Carlo (Repeated Random Subsampling)
+
+✅ Faster than full K-Fold
+❌ Less stable, depends on randomness
+Approximate CV (Bayesian Optimization & Others)
+
+✅ Reduces computation time significantly
+❌ Requires specific implementation for models
+
+
 # IV. Code implementation.
 
 # V. Real world applications.
