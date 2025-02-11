@@ -145,6 +145,20 @@ Moreover, as machine learning models become more accessible through tools like A
 
 # II. CV in depth.
 
+Cross-validation is more than just a technique; it is a fundamental methodology in machine learning that ensures models generalize well to unseen data. Understanding its workflow is crucial for applying it correctly and avoiding common pitfalls that could lead to misleading performance metrics. This section explores the step-by-step process of cross-validation, focusing on how data is split, how models are trained and validated across different iterations, and how results are aggregated to provide a reliable estimate of performance.
+
+## 1. The Cross-Validation Workflow
+Cross-validation follows a structured process that allows a model to be tested on different subsets of data, reducing the risk of overfitting and ensuring robustness. The workflow consists of three main steps: data splitting, iterative model training and validation, and final aggregation of results.
+
+### 1.1. Step-by-Step Process
+data splitting: The dataset is divided into multiple subsets or "folds." One of these folds is used as the validation set while the remaining ones are used for training. This process is repeated so that each fold serves as the validation set once, ensuring that every observation in the dataset is tested. The number of folds (commonly 5 or 10) is chosen based on dataset size and computational constraints.
+
+model training and validation iterations: In each iteration, the model is trained on the designated training folds and then evaluated on the validation fold. This process helps assess how well the model generalizes to unseen data. Each iteration provides a separate performance score, reducing the dependency on a single train-test split.
+
+aggregation of results: Once all iterations are completed, the performance scores from each fold are averaged to produce a final evaluation metric. This aggregated score serves as a more reliable indicator of model performance, mitigating the randomness that could arise from a single validation set. Additionally, standard deviation across the scores can provide insights into model stability.
+
+Cross-validation is a simple yet powerful method that allows for a more comprehensive evaluation of model performance. By following this structured approach, it is possible to detect issues such as data leakage, overfitting, or underfitting before deploying a model in real-world applications.
+
 # III. Types of Cross Validation
 
 # IV. Code implementation.
