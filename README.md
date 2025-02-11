@@ -177,6 +177,10 @@ Cross-validation, especially when using a high number of folds, can be computati
 
 Addressing these considerations ensures that cross-validation is applied in a way that maximizes its benefits while minimizing potential drawbacks.
 
+One of the main challenges in machine learning is ensuring that a model generalizes well to unseen data. While a model might perform exceptionally well on the training set, this does not guarantee that it will maintain the same performance in real-world scenarios. This issue, known as overfitting, occurs when a model learns patterns too specific to the training data, capturing noise rather than meaningful relationships. Cross-validation plays a crucial role in mitigating overfitting by ensuring that model evaluation is performed across different subsets of the data, providing a more realistic estimate of how the model will perform in practice.
+
+
+
 # III. Types of Cross Validation
 
 # IV. Code implementation.
