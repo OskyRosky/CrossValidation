@@ -346,6 +346,109 @@ These three methods form the backbone of cross-validation techniques and are wid
 
 ## 2. Advanced CV techniques.
 
+While basic cross-validation methods provide a solid foundation for evaluating machine learning models, they may not always be the best choice, especially for complex datasets, scenarios with limited data, or highly variable models. Advanced cross-validation techniques refine the evaluation process, improving reliability, efficiency, and robustness.
+
+### 2.1 Leave-One-Out Cross-Validation (LOOCV)
+
+**Definition**
+
+Leave-One-Out Cross-Validation (LOOCV) is an extreme case of K-Fold Cross-Validation where K equals the number of samples in the dataset. This means the model is trained N times (where N is the number of data points), using N-1 samples for training and a single sample for testing in each iteration.
+
+**Purpose**
+
+LOOCV is designed to maximize the use of training data, ensuring the model is tested on each data point individually. This makes it particularly useful for small datasets where every data point carries significant importance.
+
+**Advantages**
+
+- Maximum data utilization – each model is trained on almost the entire dataset.
+- Low bias – since the training set is nearly as large as the full dataset, the estimates are very close to real-world performance.
+
+**Disadvantages**
+
+- Extremely computationally expensive – requires N training iterations, making it impractical for large datasets.
+- High variance – using nearly the entire dataset for training means small variations in data can significantly impact results.
+
+**Example Use Case**
+
+A rare disease diagnosis model trained on only 200 patient cases may use LOOCV to make the best use of its limited data, ensuring each case contributes to the validation process.
+
+### 2.2 Leave-P-Out Cross-Validation (LPOCV)
+
+**Definition**
+
+Leave-P-Out Cross-Validation (LPOCV) is a generalization of LOOCV, where instead of leaving out one data point, P data points are left out for validation while the rest are used for training. The process is repeated for all possible subsets of P samples.
+
+**Purpose**
+
+LPOCV balances the trade-off between computational cost and data utilization, making it more flexible than LOOCV. It is useful when more than one data point is needed in validation but computational efficiency is still a concern.
+
+**Advantages**
+
+More flexibility than LOOCV – allows fine-tuning of the validation process by selecting an optimal P.
+More stable estimates – reducing variance compared to LOOCV.
+
+**Disadvantages**
+
+Still computationally expensive – if P is large, the number of iterations grows exponentially.
+Less common in practice – other methods (like K-Fold) often provide a better balance between cost and accuracy.
+
+**Example Use Case**
+
+A biomedical research model analyzing patient responses to a new drug might use Leave-2-Out Cross-Validation to test whether removing two critical patients at a time affects the model's reliability.
+
+### 2.3 Repeated K-Fold Cross-Validation
+
+**Definition**
+
+Repeated K-Fold Cross-Validation is an extension of standard K-Fold where the process is repeated multiple times with different random splits of the data, and the final performance metric is averaged over all repetitions.
+
+**Purpose**
+
+This method reduces the randomness of a single K-Fold split, providing a more stable and generalizable performance estimate.
+
+**Advantages**
+
+Improves reliability – multiple runs reduce bias caused by a single data split.
+Better variance estimation – useful for models sensitive to different training-test distributions.
+
+**Disadvantages**
+
+Higher computational cost – performing multiple rounds of K-Fold increases training time.
+Less effective on large datasets – as computational burden outweighs benefits.
+
+**Example Use Case**
+
+A customer churn prediction model in a telecom company can use Repeated 10-Fold Cross-Validation (with 5 repetitions) to ensure stability across different customer data splits.
+
+### 2.4 Nested Cross-Validation
+
+**Definition**
+
+Nested Cross-Validation is a technique designed to simultaneously evaluate a model’s performance and optimize its hyperparameters. It consists of two nested loops:
+
+- An inner loop for hyperparameter tuning.
+- An outer loop for model evaluation.
+- 
+This ensures that model selection and evaluation remain independent, avoiding over-optimistic results.
+
+**Purpose**
+
+Useful when performing hyperparameter tuning with techniques like Grid Search or Random Search, ensuring the reported model performance is unbiased.
+
+**Advantages**
+
+Prevents overfitting in hyperparameter tuning – avoids selecting hyperparameters that perform well only on a specific split.
+More reliable model performance estimates – especially useful for comparing multiple algorithms.
+
+**Disadvantages**
+
+Computationally expensive – requires running multiple cross-validation processes.
+Can be overkill for simple models – primarily useful for high-stakes applications.
+
+**Example Use Case**
+
+A stock price prediction model that needs hyperparameter tuning for a complex LSTM-based neural network might use Nested CV to ensure that the best-selected model generalizes well to unseen data.
+
 ## 3. Specialized CV for specific data structures.
 
 ## 4. Computationally efficient CV.
