@@ -236,13 +236,16 @@ By understanding these distinctions, practitioners can select a cross-validation
 
 Cross-validation inherently affects the trade-off between bias (underfitting) and variance (overfitting), making it critical to choose a method that aligns with model complexity and dataset size.
 
-high bias, low variance (underfitting risk)
+High bias, low variance (underfitting risk)
+
 If a model has high bias, it means it is too simplistic to capture the underlying patterns in the data. Using fewer folds in CV (e.g., 3-Fold CV) increases training data per iteration, allowing the model to learn more robust features. However, fewer folds mean less diverse validation data, potentially leading to an overly optimistic bias in performance estimation.
 
-low bias, high variance (overfitting risk)
+Low bias, high variance (overfitting risk)
+
 High-variance models tend to learn overly specific patterns, leading to poor generalization. To counteract this, increasing the number of folds (e.g., 10-Fold CV or even LOO-CV) exposes the model to a wider range of training and validation samples, reducing performance fluctuations. This approach provides a more stable estimate but at a higher computational cost.
 
-computational efficiency trade-offs
+Computational efficiency trade-offs
+
 While increasing the number of folds can enhance model evaluation, it also increases computational expense. For large datasets or complex models (e.g., deep learning models), Monte Carlo Cross-Validation (Repeated Random Subsampling) provides a more efficient alternative by randomly splitting data multiple times, rather than using a fixed number of folds.
 
 By striking the right balance between bias and variance, cross-validation can provide an accurate measure of a model’s performance while optimizing computational resources.
