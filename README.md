@@ -65,11 +65,11 @@ Cross-validation differs from traditional statistical analysis in several ways:
 
 - Focus on model generalization: traditional statistics often rely on fixed datasets to derive conclusions, while CV actively tests the model’s ability to generalize beyond the training data.
 
-Iterative process: CV involves multiple rounds of training and validation, unlike traditional analysis, which may involve a single evaluation.
+- Iterative process: CV involves multiple rounds of training and validation, unlike traditional analysis, which may involve a single evaluation.
 
-Prevention of overfitting: statistical models like regression assume certain distributions, whereas CV allows flexible model selection by testing different assumptions.
+- Prevention of overfitting: statistical models like regression assume certain distributions, whereas CV allows flexible model selection by testing different assumptions.
 
-Data-driven approach: CV is more empirical, relying on computational experiments, while statistical methods often focus on theoretical justifications.
+- Data-driven approach: CV is more empirical, relying on computational experiments, while statistical methods often focus on theoretical justifications.
 
 ### 1.5 Popularity and Importance
 
