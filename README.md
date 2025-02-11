@@ -527,9 +527,80 @@ Climate modeling, where data from entire regions is used for training while anot
 
 Specialized cross-validation techniques are essential for handling structured data where traditional methods fail. Whether dealing with sequential dependencies in time series, grouped observations in clinical trials, or spatial patterns in geographic data, choosing the right CV approach ensures that models are evaluated under realistic conditions. By applying the appropriate method, data scientists can build robust models that generalize well to new data without introducing bias or overfitting.
 
+As datasets grow larger and models become more complex, the computational cost of cross-validation increases significantly. Traditional CV methods, such as K-Fold Cross-Validation, require training a model multiple times, which can be impractical when working with large datasets or deep learning models. To address this, computationally efficient cross-validation techniques aim to reduce processing time while maintaining reliable model evaluation. These methods optimize the trade-off between accuracy and speed, making CV feasible even for resource-intensive applications.
+
 ## 4. Computationally efficient CV.
 
+Computationally efficient CV techniques balance model performance evaluation with resource constraints. These methods include Monte Carlo Cross-Validation, Repeated K-Fold Cross-Validation, and Approximate Leave-P-Out (LPO) Cross-Validation, which reduce the number of model training iterations while maintaining robust error estimation.
 
+### 4.1. Monte Carlo Cross-Validation (Repeated Random Subsampling).
+
+**Definition** 
+
+Instead of using a fixed number of folds, Monte Carlo Cross-Validation randomly splits the dataset into training and test sets multiple times, averaging the results across all iterations.
+
+**Purpose** 
+
+The goal is to reduce computation while still providing a diverse range of training and test sets for model evaluation.
+
+**Advantages**
+
+More flexible than K-Fold CV in terms of the number of splits. Allows controlling the proportion of training vs. test data. Works well for large datasets where full K-Fold CV is computationally expensive.
+
+**Disadvantages**
+
+Some data points may never be included in the test set, leading to potential bias. Random splits may lead to high variance in performance estimation.
+
+**Example Use Case** 
+
+Training deep learning models on large datasets, where traditional K-Fold CV would be too computationally expensive.
+
+### 4.2. Repeated K-Fold Cross-Validation.
+
+**Definition** 
+
+This method extends K-Fold Cross-Validation by repeating the process multiple times with different random splits of the dataset, leading to a more stable estimate of model performance.
+
+**Purpose** 
+
+The objective is to reduce variance in model evaluation by averaging results over multiple iterations.
+
+**Advantages**
+
+Provides more reliable estimates than a single K-Fold CV run and reduces dependency on any single dataset split.
+
+**Disadvantages**
+
+Increases computational cost compared to standard K-Fold CV. May still be infeasible for very large datasets or complex models.
+
+**Example Use Case** Evaluating ensemble learning techniques where a robust performance estimate is required.
+
+### 4.3. Approximate Leave-P-Out (LPO) Cross-Validation.
+
+**Definition** 
+
+Standard Leave-P-Out CV removes P observations from the dataset at a time, retraining the model on the remaining data. However, for large datasets, evaluating all possible subsets is infeasible. Approximate LPO instead samples a subset of possible P-out splits, drastically reducing computation.
+
+**Purpose** 
+
+The goal is to approximate the performance of full LPO CV while significantly reducing the number of model training runs.
+
+**Advantages**
+
+Provides an approximation of full Leave-P-Out CV without exhaustive computation.
+Works well for models where training is time-intensive.
+
+**Disadvantages**
+
+The accuracy of the estimate depends on the number of sampled subsets. May still require a large number of iterations to achieve stable results.
+
+**Example Use Case**
+
+Evaluating machine learning models where dataset size is large, but removing a small portion of data can still provide meaningful performance insights.
+
+**Conclusion of Computationally Efficient CV**
+
+Efficient cross-validation methods are essential for scaling machine learning workflows to large datasets and complex models. Techniques such as Monte Carlo CV, Repeated K-Fold CV, and Approximate LPO CV enable practitioners to balance accuracy with computational feasibility. By strategically selecting the right method, data scientists can optimize model evaluation without excessive computational costs, making CV practical even in high-performance computing environments.
 
 # IV. Code implementation.
 
