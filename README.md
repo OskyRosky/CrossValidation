@@ -159,6 +159,24 @@ aggregation of results: Once all iterations are completed, the performance score
 
 Cross-validation is a simple yet powerful method that allows for a more comprehensive evaluation of model performance. By following this structured approach, it is possible to detect issues such as data leakage, overfitting, or underfitting before deploying a model in real-world applications.
 
+###  1.2. Key Considerations When Applying CV
+
+While cross-validation is a powerful technique for evaluating model performance, its effectiveness depends on how it is applied. Several key considerations must be taken into account to ensure that the process produces meaningful and reliable results.
+
+- Data balance and representativeness
+  
+The way data is split during cross-validation can significantly impact model evaluation. If the dataset is not representative of the real-world distribution, the model may perform well in validation but fail in deployment. Stratified cross-validation is commonly used for classification problems to maintain the same proportion of classes across folds, ensuring a more accurate assessment of the model’s performance.
+
+- Handling imbalanced datasets
+
+When dealing with imbalanced datasets—where one class significantly outweighs the others—cross-validation must be adjusted to prevent misleading performance metrics. Techniques such as stratified K-fold cross-validation help preserve class distribution across folds. Additionally, performance metrics like F1-score, precision-recall curves, and area under the ROC curve (AUC-ROC) should be prioritized over simple accuracy to better reflect model effectiveness on minority classes.
+
+- Computational cost and efficiency
+
+Cross-validation, especially when using a high number of folds, can be computationally expensive. Training a model multiple times on different folds increases processing time and resource consumption. To balance efficiency with reliability, techniques like Monte Carlo cross-validation or using fewer folds (e.g., 5-fold instead of 10-fold) may be considered. In deep learning, where model training is time-intensive, alternative approaches like holdout validation or bootstrapping may be more practical in certain scenarios.
+
+Addressing these considerations ensures that cross-validation is applied in a way that maximizes its benefits while minimizing potential drawbacks.
+
 # III. Types of Cross Validation
 
 # IV. Code implementation.
