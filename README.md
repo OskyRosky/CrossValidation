@@ -449,6 +449,8 @@ Can be overkill for simple models – primarily useful for high-stakes applicati
 
 A stock price prediction model that needs hyperparameter tuning for a complex LSTM-based neural network might use Nested CV to ensure that the best-selected model generalizes well to unseen data.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 While standard and advanced cross-validation techniques work well for many datasets, they may not be suitable for data with specific structures or constraints. Certain datasets, such as time series data or those with grouped dependencies, require specialized cross-validation methods that preserve the relationships within the data. Applying standard CV techniques without considering these structures can lead to data leakage, unreliable performance estimates, and poor model generalization.
 
 
