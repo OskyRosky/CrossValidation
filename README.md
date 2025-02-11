@@ -252,6 +252,27 @@ By striking the right balance between bias and variance, cross-validation can pr
 
 # III. Types of Cross Validation
 
+Cross-validation techniques vary depending on the structure of the dataset, the computational constraints, and the specific goal of the model evaluation. Choosing the right type of cross-validation is crucial to ensure a reliable performance estimate while maintaining efficiency. The different methods are designed to address trade-offs between bias, variance, and computational cost.
+
+At a high level, cross-validation methods can be categorized into:
+
+1. **Basic Cross-Validation Methods**: straightforward approaches that provide a good balance between computational efficiency and evaluation robustness.
+2. **Advanced Cross-Validation Techniques**: more specialized methods that refine the estimation process, often at the expense of higher computational costs.
+3. **Specialized Cross-Validation for Sequential Data**: designed for datasets where order matters, such as time series data.
+4. **Computationally Efficient Cross-Validation Methods**: alternative strategies to reduce the computational burden when working with large datasets.
+
+We will start by exploring the Basic Cross-Validation Methods, which are the most commonly used and form the foundation for more advanced techniques.
+
+## 1. Basic CV methods.
+
+## 2. Advanced CV techniques.
+
+## 3. Specialized CV for specific data structures.
+
+## 4. Computationally efficient CV.
+
+
+
 # IV. Code implementation.
 
 # V. Real world applications.
