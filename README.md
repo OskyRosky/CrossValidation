@@ -687,7 +687,7 @@ Approximate Leave-P-Out (LPO) Cross-Validation
 
 ## Generating the Simulated Dataset
 
-Before diving into cross-validation, we first create a synthetic classification dataset.
+Before diving into cross-validation, we first create a synthetic classification and timeseries dataset.
 
 ```python
 # Import necessary libraries
@@ -714,6 +714,38 @@ plt.show()
 ```
 
 We generate a dataset using make_classification from scikit-learn, creating 200 samples, 10 features, and a binary target variable.
+
+```python
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Generate a synthetic time series dataset
+n_samples = 200  # Number of time points
+time_index = pd.date_range(start="2020-01-01", periods=n_samples, freq="D")
+
+# Create components for time series
+trend = np.linspace(0, 1, n_samples)  # Linear trend
+seasonality = 0.5 * np.sin(np.linspace(0, 4 * np.pi, n_samples))  # Seasonal component
+noise = np.random.normal(0, 0.1, n_samples)  # Random noise
+
+# Generate target variable
+y = 10 + 5 * trend + 2 * seasonality + noise
+
+# Create DataFrame
+time_series_data = pd.DataFrame({"Date": time_index, "Value": y})
+
+# Display the first few rows of the dataset
+import ace_tools as tools
+tools.display_dataframe_to_user(name="Synthetic Time Series Data", dataframe=time_series_data)
+
+```
+
+We generate a timeseries dataset using the columns Date and Value from scikit-learn, creating 200 daily days wih its value.
 
 ## 1. Basic Cross-Validation Methods
 
