@@ -829,12 +829,11 @@ for train_index, test_index in skf.split(X, y):
 
 These basic cross-validation methods provide essential techniques for model evaluation. Hold-Out Validation is the simplest but least robust, while K-Fold and Stratified K-Fold offer more reliable performance estimates.
 
-## 2. Advanced Cross-Validation Techniques
+## 2. Advanced cross-validation techniques.
 
+## 3. Specialized cross-validation for sequential data.
 
-
-
-
+## 4. Computationally efficient cross-validation.
 
 
 
