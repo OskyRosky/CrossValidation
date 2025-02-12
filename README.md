@@ -683,7 +683,7 @@ Approximate Leave-P-Out (LPO) Cross-Validation
 
 # IV. Code implementation.
 
-Cross-validation is a fundamental technique for evaluating machine learning models while minimizing the risk of overfitting. This section covers the Basic Cross-Validation Methods, applied to a simulated dataset.
+## Generating the Simulated Dataset
 
 Before diving into cross-validation, we first create a synthetic classification dataset.
 
@@ -710,8 +710,18 @@ sns.countplot(x=df['Target'])
 plt.title('Class Distribution in Simulated Dataset')
 plt.show()
 
-## Generating the Simulated Dataset
-
 We generate a dataset using make_classification from scikit-learn, creating 200 samples, 10 features, and a binary target variable.
+
+## 1. Basic Cross-Validation Methods
+
+Cross-validation is a fundamental technique for evaluating machine learning models while minimizing the risk of overfitting. This section covers the Basic Cross-Validation Methods, applied to a simulated dataset.
+
+
+
+
+
+
+
+
 
 # V. Real world applications.
