@@ -611,11 +611,13 @@ Hold-Out Validation
 ✅ Fast and simple to implement.
 ❌ High variance, depends on a single split.
 🛠 Example: Quick model evaluation in large datasets like email spam classification.
+
 K-Fold Cross-Validation
 
 ✅ Reduces variance compared to Hold-Out.
 ❌ Computationally expensive as the model is trained K times.
 🛠 Example: Medical diagnosis models where data is limited.
+
 Stratified K-Fold Cross-Validation
 
 ✅ Preserves class distribution in imbalanced datasets.
@@ -716,6 +718,93 @@ We generate a dataset using make_classification from scikit-learn, creating 200 
 ## 1. Basic Cross-Validation Methods
 
 Cross-validation is a fundamental technique for evaluating machine learning models while minimizing the risk of overfitting. This section covers the Basic Cross-Validation Methods, applied to a simulated dataset.
+
+### 1.1 Hold-Out Validation
+
+Hold-Out Validation is the simplest approach, where the dataset is randomly split into training and test sets. Typically, 80% of the data is used for training, and 20% is reserved for testing.
+
+```python
+from sklearn.model_selection import train_test_split
+
+# Split dataset into 80% training and 20% test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+print(f"Training set size: {len(X_train)}, Test set size: {len(X_test)}")
+```
+
+**Advantages of Hold-Out Validation**
+
+- Fast and simple, requiring only a single data split.
+- Suitable for large datasets where repeated training is computationally expensive.
+
+**Disadvantages**
+
+- High variance: The model’s performance depends heavily on how the data is split.
+- Underutilizes data, as only a portion is used for training.
+
+
+### 1.2 K-Fold Cross-Validation
+
+K-Fold Cross-Validation overcomes the limitations of Hold-Out Validation by dividing the dataset into K equally-sized subsets (folds). The model is trained K times, each time using K-1 folds for training and 1 fold for validation.
+
+In this example, we use K=5.
+
+```python
+from sklearn.model_selection import KFold
+
+# Initialize K-Fold CV with 5 splits
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+for train_index, test_index in kf.split(X):
+    print(f"Train indices: {train_index[:5]}... Test indices: {test_index[:5]}...")
+```
+
+**Advantages of K-Fold Cross-Validation**
+
+- Reduces variance: every data point is used for both training and testing.
+- More robust evaluation: less dependency on a single data split.
+
+**Disadvantages**
+
+- Computational cost: requires training the model K times.
+- Not ideal for large datasets due to repeated training.
+
+### 1.3 Stratified K-Fold Cross-Validation
+
+Stratified K-Fold is a variation of K-Fold that maintains the class distribution across all folds, making it ideal for imbalanced datasets.
+
+```python
+from sklearn.model_selection import StratifiedKFold
+
+# Initialize Stratified K-Fold CV with 5 splits
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+for train_index, test_index in skf.split(X, y):
+    print(f"Train indices: {train_index[:5]}... Test indices: {test_index[:5]}...")
+```
+
+**Advantages of Stratified K-Fold**
+
+- Ensures balanced class distribution in each fold.
+- More reliable for classification tasks with rare classes.
+
+**Disadvantages**
+
+- Increases computational complexity compared to standard K-Fold.
+- Not necessary for well-balanced datasets.
+
+####  Conclusion
+
+These basic cross-validation methods provide essential techniques for model evaluation. Hold-Out Validation is the simplest but least robust, while K-Fold and Stratified K-Fold offer more reliable performance estimates.
+
+## 1. Basic Cross-Validation Methods
+
+
+
+
+
+
+
 
 
 
