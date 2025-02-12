@@ -681,7 +681,37 @@ Approximate Leave-P-Out (LPO) Cross-Validation
 ❌ The accuracy depends on the number of sampled subsets.
 🛠 Example: Evaluating AI models in large-scale image recognition.
 
-
 # IV. Code implementation.
+
+Cross-validation is a fundamental technique for evaluating machine learning models while minimizing the risk of overfitting. This section covers the Basic Cross-Validation Methods, applied to a simulated dataset.
+
+Before diving into cross-validation, we first create a synthetic classification dataset.
+
+```python
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_classification
+
+# Generate a synthetic classification dataset
+X, y = make_classification(n_samples=200, n_features=10, n_classes=2, random_state=42)
+
+# Convert to DataFrame for readability
+df = pd.DataFrame(X, columns=[f'Feature_{i+1}' for i in range(X.shape[1])])
+df['Target'] = y
+
+# Display first rows
+print(df.head())
+
+# Plot class distribution
+sns.countplot(x=df['Target'])
+plt.title('Class Distribution in Simulated Dataset')
+plt.show()
+
+## Generating the Simulated Dataset
+
+We generate a dataset using make_classification from scikit-learn, creating 200 samples, 10 features, and a binary target variable.
 
 # V. Real world applications.
