@@ -1020,6 +1020,16 @@ These advanced techniques allow data scientists to make more reliable assessment
 
 ## 3. Specialized cross-validation for sequential data.
 
+Traditional cross-validation techniques assume that data points are independent and identically distributed (IID). However, in many real-world scenarios, data has a temporal or structural dependency, such as time series data, grouped observations, or spatial data. Applying standard CV methods in these cases can lead to data leakage and unreliable model evaluations.
+
+This section covers specialized cross-validation methods that account for sequential dependencies and ensure a robust validation process.
+
+### 
+
+### 
+
+### 
+
 ## 4. Computationally efficient cross-validation.
 
 
