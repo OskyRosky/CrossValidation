@@ -831,6 +831,193 @@ These basic cross-validation methods provide essential techniques for model eval
 
 ## 2. Advanced cross-validation techniques.
 
+While basic cross-validation techniques such as Hold-Out and K-Fold are widely used, they may not always be suitable for all scenarios, especially when dealing with limited data, model variance, or hyperparameter tuning. Advanced cross-validation methods aim to refine performance estimation, improve robustness, and handle special constraints such as small sample sizes or hyperparameter optimization.
+
+In this section, we will cover:
+
+- Leave-One-Out Cross-Validation (LOOCV).
+- Leave-P-Out Cross-Validation (LPO-CV).
+- Repeated K-Fold Cross-Validation.
+- Nested Cross-Validation.
+  
+Each of these methods will be implemented in Python, demonstrating how they work in practice.
+
+### 2.1 Leave-One-Out Cross-Validation (LOOCV)
+
+LOOCV is a special case of K-Fold Cross-Validation where K = the number of samples in the dataset. This means that for every iteration, a single data point is used as the test set, while the remaining samples are used for training. LOOCV ensures that the model is tested on every possible data point, leading to highly reliable performance estimation, especially for small datasets.
+
+```python
+from sklearn.model_selection import LeaveOneOut
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
+# Initialize LOOCV and model
+loo = LeaveOneOut()
+model = LinearRegression()
+errors = []
+
+# Perform LOOCV
+for train_index, test_index in loo.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    errors.append(mean_squared_error(y_test, y_pred))
+
+# Compute average error
+loocv_error = np.mean(errors)
+print(f'LOOCV Mean Squared Error: {loocv_error:.4f}')
+
+```
+
+**Advantages**
+
+- Maximizes training data usage since nearly all data is used for training.
+- Provides low bias, as each fold is almost the full dataset.
+
+**Disadvantages**
+
+- Computationally expensive for large datasets since it requires N model trainings.
+- High variance, as each test set consists of only one observation.
+
+### 2.2 Leave-P-Out Cross-Validation (LPOCV)
+
+Leave-P-Out (LPOCV) is a generalization of LOOCV, where P observations are left out for validation instead of one. The method is useful when we want to evaluate models with multiple validation points at a time, but it becomes computationally impractical as P increases.
+
+```python
+from sklearn.model_selection import LeavePOut
+
+# Initialize Leave-P-Out with P=2
+lpo = LeavePOut(p=2)
+errors = []
+
+# Perform LPOCV
+for train_index, test_index in lpo.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    errors.append(mean_squared_error(y_test, y_pred))
+
+# Compute average error
+lpocv_error = np.mean(errors)
+print(f'LPOCV Mean Squared Error: {lpocv_error:.4f}')
+```
+
+**Advantages**
+
+More flexible than LOOCV, allowing larger test sets.
+Reduces some of the high variance present in LOOCV.
+
+**Disadvantages**
+
+Computationally expensive, especially as P increases.
+Less common in practice, as other methods like K-Fold often provide better efficiency.
+
+
+### 2.3 Repeated K-Fold Cross-Validation.
+
+This technique extends standard K-Fold Cross-Validation by repeating the process multiple times with different random splits, providing a more stable performance estimate by reducing variance.
+
+```python
+from sklearn.model_selection import RepeatedKFold
+
+# Initialize Repeated K-Fold with 5 splits and 3 repetitions
+rkf = RepeatedKFold(n_splits=5, n_repeats=3, random_state=42)
+errors = []
+
+# Perform Repeated K-Fold CV
+for train_index, test_index in rkf.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    errors.append(mean_squared_error(y_test, y_pred))
+
+# Compute average error
+rkf_error = np.mean(errors)
+print(f'Repeated K-Fold CV Mean Squared Error: {rkf_error:.4f}')
+```
+
+**Advantages**
+
+- Reduces variance by averaging multiple K-Fold runs.
+- Provides more reliable estimates than a single K-Fold split.
+
+**Disadvantages**
+
+- Increases computational cost due to multiple iterations.
+- Not necessary for models with already stable performance estimates.
+
+### 2.4 Nested Cross-Validation
+
+Nested Cross-Validation is used when we need to evaluate model performance while optimizing hyperparameters. It consists of two nested loops:
+
+- Inner loop: performs hyperparameter tuning.
+- Outer loop: evaluates model performance using the best hyperparameters.
+
+
+```python
+from sklearn.model_selection import GridSearchCV, KFold
+from sklearn.svm import SVR
+
+# Define inner and outer cross-validation strategies
+inner_cv = KFold(n_splits=3, shuffle=True, random_state=42)
+outer_cv = KFold(n_splits=5, shuffle=True, random_state=42)
+
+# Define hyperparameter grid
+param_grid = {'C': [0.1, 1, 10], 'epsilon': [0.01, 0.1, 1]}
+
+# Initialize model
+svr = SVR()
+
+# Perform GridSearch within inner CV loop
+grid_search = GridSearchCV(svr, param_grid, cv=inner_cv, scoring='neg_mean_squared_error')
+
+# Evaluate model using Nested CV
+nested_scores = []
+for train_index, test_index in outer_cv.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    grid_search.fit(X_train, y_train)
+    best_model = grid_search.best_estimator_
+    y_pred = best_model.predict(X_test)
+
+    nested_scores.append(mean_squared_error(y_test, y_pred))
+
+# Compute final error
+nested_cv_error = np.mean(nested_scores)
+print(f'Nested CV Mean Squared Error: {nested_cv_error:.4f}')
+
+```
+
+**Advantages**
+
+Prevents overfitting in hyperparameter tuning, ensuring unbiased performance estimation.
+Useful for comparing different machine learning models fairly.
+
+**Disadvantages**
+
+Computationally expensive since it runs multiple nested cross-validation loops.
+Can be overkill for simple models with few hyperparameters.
+
+### Conclusion advanced cross-validation techniques.
+
+Each advanced cross-validation method serves a specific purpose, balancing computational cost and reliability. Leave-One-Out Cross-Validation (LOOCV) is highly effective for small datasets, ensuring that each data point is used for both training and testing. However, its computational cost is extremely high, and it suffers from high variance since every test set consists of only one observation.
+
+A generalization of LOOCV, Leave-P-Out Cross-Validation (LPOCV), allows evaluating multiple validation points at once, reducing some of the high variance present in LOOCV. However, as P increases, the method becomes computationally impractical, making it rarely used in practice for large datasets.
+
+To address the variability in standard K-Fold CV, Repeated K-Fold Cross-Validation improves model evaluation by repeating K-Fold multiple times with different splits, ensuring a more stable performance estimate. While it provides better generalization, it comes at the cost of increased computation, which may not always be necessary for models that already perform consistently.
+
+Finally, Nested Cross-Validation is a powerful technique used for simultaneously evaluating model performance and tuning hyperparameters. It prevents overfitting during hyperparameter selection and ensures a fair comparison between different machine learning models. However, it is computationally expensive, as it involves running multiple cross-validation loops. While it is highly useful for complex models with many hyperparameters, it may be unnecessary for simpler models with limited tuning requirements.
+
+These advanced techniques allow data scientists to make more reliable assessments of model performance, but choosing the right approach depends on the dataset size, computational resources, and the specific problem being solved.
+
 ## 3. Specialized cross-validation for sequential data.
 
 ## 4. Computationally efficient cross-validation.
