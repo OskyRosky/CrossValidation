@@ -163,6 +163,9 @@ Cross-validation plays a vital role in numerous real-world applications, influen
 
 By ensuring that machine learning models are robust and generalizable, cross-validation indirectly shapes decision-making processes across industries, fostering trust in AI-driven solutions.
 
+ ![ut](/ima/ima3.jpg)
+
+
 ## 2. Purpose and importance of CV.
 
 Cross-validation (CV) is not just a methodological step in machine learning but a fundamental practice that enhances model reliability and generalization. Its importance stems from several key aspects:
