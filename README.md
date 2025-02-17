@@ -202,6 +202,8 @@ CV is widely used across academia and industry, providing a common evaluation st
 
 Without proper validation, models might appear to perform exceptionally well on a specific dataset but fail in real-world deployment. CV mitigates this by offering a more realistic estimate of performance through multiple validation cycles.
 
+ ![ut](/ima/ima4.jpg)
+
 ### Why is Cross-Validation More Important Today?
 
 With the increasing complexity of machine learning models, particularly deep learning architectures, ensuring that a model performs well across diverse data distributions is more critical than ever. Modern applications in healthcare, finance, autonomous systems, and large-scale recommendation engines heavily depend on rigorous validation to avoid costly errors.
@@ -211,6 +213,8 @@ Moreover, as machine learning models become more accessible through tools like A
 # II. CV in depth.
 
 Cross-validation is more than just a technique; it is a fundamental methodology in machine learning that ensures models generalize well to unseen data. Understanding its workflow is crucial for applying it correctly and avoiding common pitfalls that could lead to misleading performance metrics. This section explores the step-by-step process of cross-validation, focusing on how data is split, how models are trained and validated across different iterations, and how results are aggregated to provide a reliable estimate of performance.
+
+ ![ut](/ima/ima5.png)
 
 ## 1. The Cross-Validation Workflow
 Cross-validation follows a structured process that allows a model to be tested on different subsets of data, reducing the risk of overfitting and ensuring robustness. The workflow consists of three main steps: data splitting, iterative model training and validation, and final aggregation of results.
@@ -244,6 +248,8 @@ Addressing these considerations ensures that cross-validation is applied in a wa
 
 One of the main challenges in machine learning is ensuring that a model generalizes well to unseen data. While a model might perform exceptionally well on the training set, this does not guarantee that it will maintain the same performance in real-world scenarios. This issue, known as overfitting, occurs when a model learns patterns too specific to the training data, capturing noise rather than meaningful relationships. Cross-validation plays a crucial role in mitigating overfitting by ensuring that model evaluation is performed across different subsets of the data, providing a more realistic estimate of how the model will perform in practice.
 
+ ![ut](/ima/ima6.png)
+
 ## 2. Overfitting Prevention via CV
 
 Ensuring that a model generalizes beyond the training data is a fundamental requirement in machine learning. Overfitting not only leads to poor performance on new data but also creates misleading conclusions about a model’s capabilities. Cross-validation helps identify overfitting by assessing how well a model maintains its performance across different subsets of data. Additionally, it provides insight into whether a model is overly complex and requires adjustments, such as regularization techniques. This section explores how cross-validation helps prevent overfitting and highlights common pitfalls that can arise when using CV incorrectly.
@@ -274,6 +280,8 @@ Ensuring that the training and validation sets remain completely independent is 
 Avoiding these pitfalls ensures that cross-validation provides an accurate assessment of model performance, helping practitioners make better decisions in model selection and tuning.
 
 While cross-validation is a powerful technique for assessing model performance and mitigating overfitting, its effectiveness largely depends on choosing the right validation strategy. Not all datasets and modeling scenarios require the same cross-validation approach—factors such as dataset size, data structure, and model complexity influence which strategy will yield the most reliable results. A poorly chosen validation method can lead to biased estimates, inefficient model tuning, or even misleading conclusions about a model’s true performance.
+
+ ![ut](/ima/ima7.png)
 
 ## 3. Choosing the Right Cross-Validation Strategy
 
@@ -314,6 +322,8 @@ Computational efficiency trade-offs
 While increasing the number of folds can enhance model evaluation, it also increases computational expense. For large datasets or complex models (e.g., deep learning models), Monte Carlo Cross-Validation (Repeated Random Subsampling) provides a more efficient alternative by randomly splitting data multiple times, rather than using a fixed number of folds.
 
 By striking the right balance between bias and variance, cross-validation can provide an accurate measure of a model’s performance while optimizing computational resources.
+
+ ![ut](/ima/ima11.jpg)
 
 # III. Types of Cross Validation
 
@@ -408,6 +418,8 @@ Computational overhead – similar to K-Fold, it requires multiple model trainin
 A credit card fraud detection model needs to be evaluated using Stratified K-Fold Cross-Validation because fraudulent transactions are rare compared to non-fraudulent ones. Without stratification, some folds may contain only non-fraudulent transactions, leading to misleading results.
 
 These three methods form the backbone of cross-validation techniques and are widely used depending on the dataset size and problem at hand
+
+ ![ut](/ima/ima12.jpg)
 
 ## 2. Advanced CV techniques.
 
