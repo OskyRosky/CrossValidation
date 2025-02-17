@@ -81,9 +81,9 @@ python efficient_cv.py
 
 8.  **More** 🙌🏽
 
-📜 License: Oscar Corp License
-📬 Contact: For questions or suggestions, open an issue or reach out via email.
-🌟 Contributions are welcome! Feel free to submit PRs for improvements.
+- 📜 License: Oscar Corp License
+- 📬 Contact: For questions or suggestions, open an issue or reach out via email.
+- 🌟 Contributions are welcome! Feel free to submit PRs for improvements.
 
 ---------------------------------------------
 
